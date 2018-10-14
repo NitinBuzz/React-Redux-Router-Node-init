@@ -10,5 +10,11 @@ const composeEnhancers =
     : compose;
 
 export default function configureStore() {
-  return createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+  return createStore(
+    rootReducer,
+    {
+      auth: { authenticated: localStorage.getItem("token"), errorMessage: "" }
+    },
+    composeEnhancers(applyMiddleware(thunk))
+  );
 }

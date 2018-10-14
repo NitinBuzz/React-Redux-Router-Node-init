@@ -8,12 +8,19 @@ function tokenForUser(user) {
 }
 
 exports.signin = function(req, res, next) {
+  console.log(`yes nin`);
   res.send({ token: tokenForUser(req.user) });
 };
 
 exports.signup = function(req, res, next) {
-  const email = req.body.email;
-  const password = req.body.password;
+  const email = req.body.formProps.email;
+  const password = req.body.formProps.password;
+
+  console.log(
+    `email n password n body: ${JSON.stringify(
+      req.body
+    )} ${email} / ${password}`
+  );
 
   if (!email || !password) {
     return res
