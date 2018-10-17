@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost:27017/auth");
 
+//thop
+
 app.use(morgan("combined"));
 app.use(bodyParser.json({ type: "*/*" }));
 router(app);
