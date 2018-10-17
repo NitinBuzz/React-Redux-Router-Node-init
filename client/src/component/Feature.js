@@ -10,7 +10,17 @@ class Feature extends Component {
     console.log(`this props -- ${JSON.stringify(this.props)}`);
   }
   render() {
-    return <div>We Rock</div>;
+    return (
+      <div
+        style={{
+          height: "95vh",
+          background: `linear-gradient(to left bottom,#e6e6e6 , #fff)`,
+          clipPath: `polygon( 0 0, 100% 0, 100% 75%, 0 100%)`
+        }}
+      >
+        <p>We Rock</p>
+      </div>
+    );
   }
 }
 

@@ -11,6 +11,7 @@ mongoose.connect("mongodb://localhost:27017/auth");
 app.use(morgan("combined"));
 app.use(bodyParser.json({ type: "*/*" }));
 router(app);
+console.log(`123`);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

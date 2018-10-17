@@ -13,7 +13,11 @@ export default function configureStore() {
   return createStore(
     rootReducer,
     {
-      auth: { authenticated: localStorage.getItem("token"), errorMessage: "" }
+      auth: { authenticated: localStorage.getItem("token"), errorMessage: "" },
+      user: {
+        _id: localStorage.getItem("user"),
+        email: localStorage.getItem("user_email")
+      }
     },
     composeEnhancers(applyMiddleware(thunk))
   );
