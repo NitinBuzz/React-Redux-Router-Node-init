@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost:27017/auth");
 
-//thop
+//thop 33
 
 app.use(morgan("combined"));
 app.use(bodyParser.json({ type: "*/*" }));
